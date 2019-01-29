@@ -9,7 +9,6 @@
 				echo 'Now Building'
 				sh 'mvn clean install'
 				sh 'git log --format="%ae" | head -1 > commit-author.txt'                 
-                readFile('commit-author.txt').trim()
 			}
 		}
 	}
