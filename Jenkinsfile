@@ -1,4 +1,4 @@
-pipeline {
+	pipeline {
 	agent any
 	tools {
         maven 'Maven'
@@ -7,6 +7,7 @@ pipeline {
 		stage('Maven Installing the project ...') {
 			steps {
 				echo 'Now Building'
+				sh 'mvn clean install'
 			}
 		}
 	}
@@ -30,4 +31,3 @@ pipeline {
 		}
 	}
 }
-
