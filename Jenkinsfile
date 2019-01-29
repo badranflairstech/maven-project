@@ -1,4 +1,4 @@
-	pipeline {
+pipeline {
 	agent any
 	tools {
         maven 'Maven'
@@ -8,7 +8,10 @@
 			steps {
 				echo 'Now Building'
 				sh 'mvn clean install'
-				sh 'git log --format="%ae" | head -1 > commit-author.txt'                 
+				script{
+					committerEmail = sh (script: 'git --no-pager show -s --format=\'%ae\'',returnStdout: true).trim()
+                    echo "The last commit was written by ${committerEmail}."
+				}
 			}
 		}
 	}
